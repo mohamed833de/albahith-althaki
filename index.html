@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102d27">
+  <title>الباحث الذكي | Al-Bahith Al-Thaki</title>
+
+  <style>
+    :root {
+      --bg: #f5f4ee;
+      --green: #123b32;
+      --gold: #c7a45b;
+      --text: #202923;
+      --muted: #747b74;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Tahoma, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.9;
+    }
+
+    header {
+      background: var(--green);
+      color: white;
+      padding: 28px 18px 42px;
+      text-align: center;
+      border-bottom: 4px solid var(--gold);
+    }
+
+    .logo {
+      width: 68px;
+      height: 68px;
+      margin: 0 auto 12px;
+      border: 2px solid var(--gold);
+      border-radius: 20px;
+      display: grid;
+      place-items: center;
+      color: var(--gold);
+      font-size: 35px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 30px;
+    }
+
+    header p {
+      color: #e3e9e3;
+      margin: 8px 0 0;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 4px 13px;
+      border: 1px solid #668477;
+      border-radius: 20px;
+      color: #e4d2a4;
+      font-size: 13px;
+    }
+
+    main {
+      max-width: 850px;
+      margin: -20px auto 0;
+      padding: 0 16px 40px;
+    }
+
+    .panel {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 8px 30px #163c3210;
+      border: 1px solid #e8e6dc;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: var(--green);
+      font-size: 21px;
+    }
+
+    .description {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 125px;
+      padding: 15px;
+      border: 1px solid #d9ded6;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 16px;
+      resize: vertical;
+      outline-color: var(--gold);
+      background: #fdfdfb;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border-radius: 10px;
+      padding: 11px 17px;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    .search-button {
+      width: 100%;
+      margin-top: 12px;
+      border: none;
+      background: var(--green);
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .search-button:hover {
+      background: #205647;
+    }
+
+    .notice {
+      margin-top: 18px;
+      padding: 12px 14px;
+      background: #f8f3e7;
+      border-right: 3px solid var(--gold);
+      border-radius: 8px;
+      font-size: 13px;
+      color: #65583b;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .feature {
+      padding: 15px 10px;
+      background: white;
+      border: 1px solid #e8e6dc;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .feature strong {
+      display: block;
+      color: var(--green);
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .result {
+      margin-top: 22px;
+      background: white;
+      padding: 20px;
+      border: 1px solid #e8e6dc;
+      border-radius: 14px;
+    }
+
+    .result h3 {
+      color: var(--green);
+      margin-top: 0;
+    }
+
+    .result-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .copy-button {
+      background: #edf3ee;
+      border: 1px solid #d2e1d5;
+      color: var(--green);
+    }
+
+    .copy-all {
+      background: var(--green);
+      color: white;
+      border: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @media (max-width: 520px) {
+      header h1 {
+        font-size: 25px;
+      }
+
+      .panel {
+        padding: 18px;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">⌕</div>
+    <h1>الباحث الذكي</h1>
+    <p>منصة للبحث العلمي في المصادر الإسلامية</p>
+    <div class="tag">Al-Bahith Al-Thaki</div>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2>ابدأ بحثك العلمي</h2>
+      <p class="description">
+        اكتب موضوع البحث أو السؤال الذي تريد دراسته.
+      </p>
+
+      <form id="searchForm">
+        <textarea
+          id="query"
+          placeholder="مثال: ما أقوال المذاهب الأربعة في حكم الحجر على السفيه؟"
+          required
+        ></textarea>
+
+        <button class="search-button" type="submit">
+          بدء البحث ←
+        </button>
+      </form>
+
+      <div class="notice" id="notice">
+        هذه نسخة أولية للواجهة. لم يُربط البحث بالمكتبة الشاملة بعد.
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="feature">
+        <strong>📚 مصادر موثقة</strong>
+        ربط المصادر وبيانات الكتب
+      </div>
+
+      <div class="feature">
+        <strong>📋 نسخ النتائج</strong>
+        نسخ النصوص والمراجع بسهولة
+      </div>
+
+      <div class="feature">
+        <strong>⚖️ مقارنة المذاهب</strong>
+        دراسة الأقوال ومقارنتها
+      </div>
+    </section>
+
+    <section id="results" aria-live="polite"></section>
+  </main>
+
+  <footer>
+    الباحث الذكي © <span id="year"></span>
+    <br>
+    أداة مساعدة للبحث العلمي والتحقق من المصادر
+  </footer>
+
+  <script>
+    const form = document.getElementById("searchForm");
+    const queryInput = document.getElementById("query");
+    const notice = document.getElementById("notice");
+    const results = document.getElementById("results");
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const query = queryInput.value.trim();
+
+      if (!query) {
+        return;
+      }
+
+      results.innerHTML = "";
+
+      const section = document.createElement("div");
+      section.className = "result";
+
+      const title = document.createElement("h3");
+      title.textContent = "طلب البحث";
+
+      const question = document.createElement("p");
+      question.textContent = query;
+
+      const message = document.createElement("p");
+      message.className = "description";
+      message.textContent =
+        "تم تسجيل موضوع البحث في الواجهة التجريبية. البحث الفعلي في المصادر سيُفعّل بعد ربط خدمة المكتبة الشاملة.";
+
+      const actions = document.createElement("div");
+      actions.className = "result-actions";
+
+      const copyButton = document.createElement("button");
+      copyButton.className = "copy-button";
+      copyButton.textContent = "📋 نسخ موضوع البحث";
+
+      copyButton.addEventListener("click", async function() {
+        try {
+          await copyText(query);
+          copyButton.textContent = "✓ تم النسخ";
+        } catch {
+          copyButton.textContent = "تعذر النسخ";
+        }
+      });
+
+      actions.appendChild(copyButton);
+      section.append(title, question, message, actions);
+      results.appendChild(section);
+
+      notice.textContent =
+        "هذه تجربة أولية: لم يتم إجراء بحث حقيقي في المكتبة الشاملة.";
+    });
+
+    async function copyText(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+
+      const field = document.createElement("textarea");
+      field.value = text;
+      field.style.position = "fixed";
+      field.style.opacity = "0";
+      document.body.appendChild(field);
+      field.select();
+
+      const copied = document.execCommand("copy");
+      field.remove();
+
+      if (!copied) {
+        throw new Error("Copy failed");
+      }
+    }
+  </script>
+</body>
+</html>
